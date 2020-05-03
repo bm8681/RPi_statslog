@@ -67,31 +67,26 @@ file.write(" \n")
 
 # Transforms the value read in integer
 TEMPa = os.popen("vcgencmd measure_temp").readline()
-#TEMPb = re.findall(r'\d+', TEMPa)
-#TEMPc = list(map(int, TEMPb))
-#TEMPd = TEMPc[1:]
+
+#check if temp 70.0-79.9
 TEMP = TEMPa.startswith("7",5,) 
 
 file.write(TEMPa)
 file.write(" \n")
 
-# Sets supported maximum temperature
-# MAX= 70
 
-# file.write ("Too hot?" TEMP)
+
 
 if 	TEMP == True:
 
 		
 		file.write ("This is too hot!")
 		
-#		time.sleep(60)
+		# shutdown RPi
 
-		# Halt hardware
-#
 		os.system("sudo shutdown -h now")
 else:
-		# Remove lock
+		# no problem so code exited ready for next run
 
 		file.write ("No issue to report\n")
 		sys.exit()
